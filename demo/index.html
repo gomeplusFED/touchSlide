@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>touchslide demo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    </head>
+    <body>
+        <style>
+            *{
+                padding:0px;
+                margin:0px;
+            }
+            #J_slide ul li {
+                float:left;
+                margin-right:10px;
+                border:#ccc solid 1px;
+                text-align:center;
+                height:100px;
+                width:100px;
+                line-height:100px;
+                list-style:none;
+            }
+        </style>
+        <div style="height:1000px;"></div>
+        <div id="J_slide">
+            <ul class="J_slide_box" style="position:relative;">
+                <li class="J_slide_item">1</li> 
+                <li class="J_slide_item">2</li> 
+                <li class="J_slide_item">3</li> 
+                <li class="J_slide_item">4</li> 
+                <li class="J_slide_item" style="margin-right:0px;">5</li> 
+                <li id="J_more" style="margin:0px;display:none;position:absolute;right:-110px;">查看更多</li>
+            </ul>
+        </div>
+        <div style="height:1000px;"></div>
+        <script src="../src/touchSlide.js"></script>
+        <script>
+           var $slide = document.getElementById('J_slide');
+           var more = document.getElementById('J_more');
+           var mySlide = new touchSlide($slide); 
+           mySlide.events.on('leftOver',function(left){
+               console.log(left);
+           });
+           mySlide.events.on('rightOver',function(left){
+            more.style.display = 'block';
+            if(left > 110){
+                console.log('go!'); 
+            }
+           });
+           mySlide.events.on('end',function(left){
+            more.style.display = 'none';
+           });
+
+        </script>
+    </body>
+</html>
